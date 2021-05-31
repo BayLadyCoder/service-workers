@@ -35,7 +35,11 @@ self.addEventListener("fetch", (e) => {
 
         // Open cache
         caches.open(cacheName).then((cache) => {
-          cache.put(e.request, resClone);
+          if (request.url.match("^(http|https)://")) {
+            cache.put(e.request, resClone);
+          } else {
+            return;
+          }
         });
         return res;
       })
