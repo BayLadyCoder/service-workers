@@ -2,7 +2,9 @@
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register("./sw_cached_site.js")
+      .register("/service-workers/sw_cached_site.js", {
+        scope: "/service-workers/",
+      })
       .then((reg) => console.log("Service Worker: Registered"))
       .catch((err) => console.log(`Service Worker: Error: ${err}`));
   });
