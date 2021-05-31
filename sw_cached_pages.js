@@ -39,3 +39,9 @@ self.addEventListener("activate", (e) => {
     })
   );
 });
+
+// Call fetch Event to fetch the files when we are offline
+self.addEventListener("fetch", (e) => {
+  console.log("Service Worker: Fetching");
+  e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
+});
